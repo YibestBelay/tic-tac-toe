@@ -1,4 +1,4 @@
-from player import HumanPlayer,RandomComputerPlayer
+from player import HumanPlayer,RandomComputerPlayer,GeniusComputerPlayer
 import time
 class TicTacToe: 
     def __init__(self):
@@ -55,23 +55,23 @@ class TicTacToe:
 def play(game,x_player, o_player,print_game= True):
     if print_game:
         game.print_board_nums() 
-    letter = 'x'
+    letter = 'X'
     while game.empty_squares():
-        if letter == 'o':
+        if letter == 'O':
             square = o_player.get_move(game)
         else:
             square = x_player.get_move(game)  
 
         if game.make_move(square,letter):
             if print_game:
-                print(letter + f'make a move to square{square}')
+                print( f'{letter}make a move to square{square}')
                 game.print_board() 
                 print('')  
             if game.current_winner:
                 if print_game:
                     print(letter + ' wins!')
                 return letter    
-            letter = 'o' if letter == 'x' else 'x'         
+            letter = 'O' if letter == 'X' else 'X'         
         
         time.sleep(0.8)
     if print_game:
@@ -79,7 +79,7 @@ def play(game,x_player, o_player,print_game= True):
 
 if __name__ == '__main__':
     x_player = HumanPlayer('x')
-    o_player = RandomComputerPlayer('o')
+    o_player = GeniusComputerPlayer('o')
     t = TicTacToe()
     play(t,x_player , o_player , print_game=True)
 
